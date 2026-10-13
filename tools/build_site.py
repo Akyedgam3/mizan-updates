@@ -40,7 +40,7 @@ def page(file, title, desc, body, active='', base=''):
 <meta property="og:image" content="{SITE}assets/img/og.jpg" />
 <link rel="canonical" href="{SITE}{file if file != 'index.html' else ''}" />
 <link rel="preload" href="assets/fonts/cairo-arabic-900-normal.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="stylesheet" href="assets/css/site.css?v=2" />
+<link rel="stylesheet" href="assets/css/site.css?v=3" />
 </head>
 <body>
 <a class="skip" href="#main">تخطَّ إلى المحتوى</a>
