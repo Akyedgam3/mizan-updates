@@ -69,6 +69,7 @@ def page(file, title, desc, body, active='', base=''):
         <a href="index.html#videos">فيديوهات الشرح</a>
         <a href="index.html#pricing">الأسعار</a>
         <a href="index.html#faq">الأسئلة الشائعة</a>
+        <a href="media/Mizan-Brochure.pdf" download>بروشور ميزان (PDF)</a>
       </div>
       <div>
         <h4>الشركة</h4>
