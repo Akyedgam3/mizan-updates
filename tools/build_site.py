@@ -16,7 +16,7 @@ def icon(name, cls=''):
     return f'<svg{c} aria-hidden="true"><use href="assets/img/icons.svg#{name}"/></svg>'
 
 
-NAV = [('index.html', 'الرئيسية'), ('index.html#sectors', 'المجالات'), ('index.html#features', 'المزايا'), ('index.html#videos', 'الفيديوهات'), ('agents.html', 'كن وكيلاً'), ('index.html#faq', 'أسئلة')]
+NAV = [('index.html', 'الرئيسية'), ('index.html#sectors', 'المجالات'), ('index.html#features', 'المزايا'), ('index.html#pricing', 'الأسعار'), ('index.html#videos', 'الفيديوهات'), ('agents.html', 'كن وكيلاً'), ('index.html#faq', 'أسئلة')]
 
 
 def page(file, title, desc, body, active='', base=''):
@@ -40,7 +40,7 @@ def page(file, title, desc, body, active='', base=''):
 <meta property="og:image" content="{SITE}assets/img/og.jpg" />
 <link rel="canonical" href="{SITE}{file if file != 'index.html' else ''}" />
 <link rel="preload" href="assets/fonts/cairo-arabic-900-normal.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="stylesheet" href="assets/css/site.css?v=1" />
+<link rel="stylesheet" href="assets/css/site.css?v=2" />
 </head>
 <body>
 <a class="skip" href="#main">تخطَّ إلى المحتوى</a>
@@ -67,6 +67,7 @@ def page(file, title, desc, body, active='', base=''):
         <a href="{DOWNLOAD}">تحميل ميزان</a>
         <a href="index.html#sectors">مجالات العمل</a>
         <a href="index.html#videos">فيديوهات الشرح</a>
+        <a href="index.html#pricing">الأسعار</a>
         <a href="index.html#faq">الأسئلة الشائعة</a>
       </div>
       <div>
@@ -85,7 +86,7 @@ def page(file, title, desc, body, active='', base=''):
   </div>
 </footer>
 <a class="wa-float" href="https://wa.me/{WA1}" rel="noopener" aria-label="راسلنا واتساب">{icon('message-circle')}</a>
-<script src="assets/js/site.js?v=1" defer></script>
+<script src="assets/js/site.js?v=2" defer></script>
 </body>
 </html>
 '''
