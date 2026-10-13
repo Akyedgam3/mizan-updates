@@ -1,0 +1,35 @@
+# ينشر ملف التنصيب كـ Release. يُدفع الملف على فرع مؤقت "upload/<النسخة>"
+# فيه release/Mizan-Setup.exe و release/NOTES.md، وبعد النشر بينحذف الفرع
+# حتى ما يكبر حجم المستودع.
+name: Publish installer
+
+on:
+  push:
+    branches: ['upload/**']
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION="${GITHUB_REF_NAME#upload/}"
+          test -f release/Mizan-Setup.exe
+          NOTES="release/NOTES.md"
+          [ -f "$NOTES" ] || echo "ميزان $VERSION" > "$NOTES"
+          if gh release view "v$VERSION" >/dev/null 2>&1; then
+            gh release upload "v$VERSION" release/Mizan-Setup.exe --clobber
+          else
+            gh release create "v$VERSION" release/Mizan-Setup.exe --title "ميزان $VERSION" --notes-file "$NOTES" --target main --latest
+          fi
+      - name: Remove the upload branch
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: git push origin --delete "$GITHUB_REF_NAME" || true
