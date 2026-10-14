@@ -12,18 +12,9 @@ concurrency:
   group: pages
   cancel-in-progress: true
 jobs:
-  # إذا مصدر GitHub Pages هو الفرع: منطلب بناء جديد
-  branch-build:
+  # مصدر GitHub Pages = GitHub Actions: منرفع الموقع مباشرة
+  deploy:
     runs-on: ubuntu-latest
-    continue-on-error: true
-    steps:
-      - run: |
-          curl -fsS -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "Accept: application/vnd.github+json" \
-            https://api.github.com/repos/${{ github.repository }}/pages/builds
-  # إذا مصدر GitHub Pages هو GitHub Actions: منرفع الموقع مباشرة
-  actions-deploy:
-    runs-on: ubuntu-latest
-    continue-on-error: true
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
