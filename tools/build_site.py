@@ -6,7 +6,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, 'tools', 'pages')
 
 SITE = 'https://akyedgam3.github.io/mizan-updates/'
-DOWNLOAD = 'https://github.com/Akyedgam3/mizan-updates/releases/latest/download/Mizan-Setup.exe'
+DOWNLOAD = 'https://github.com/Akyedgam3/mizan-updates/releases/latest/download/Miyar-Setup.exe'
 WA1, WA2 = '963968037609', '963980072891'
 PH1, PH2 = '+963 968 037 609', '+963 980 072 891'
 # رقم آخر نسخة: بيتحدّث لحالو من scripts/publish-release.sh بمستودع البرنامج
