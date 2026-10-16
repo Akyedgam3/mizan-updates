@@ -6,7 +6,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, 'tools', 'pages')
 
 SITE = 'https://akyedgam3.github.io/mizan-updates/'
-DOWNLOAD = 'https://github.com/Akyedgam3/mizan-updates/releases/latest/download/Miyar-Setup.exe'
+DOWNLOAD = 'https://github.com/Akyedgam3/mizan-updates/releases/latest/download/Mizan-Setup.exe'
 WA1, WA2 = '963968037609', '963980072891'
 PH1, PH2 = '+963 968 037 609', '+963 980 072 891'
 # رقم آخر نسخة: بيتحدّث لحالو من scripts/publish-release.sh بمستودع البرنامج
@@ -48,7 +48,7 @@ def page(file, title, desc, body, active='', base=''):
 <a class="skip" href="#main">تخطَّ إلى المحتوى</a>
 <header class="nav">
   <div class="wrap">
-    <a class="brand" href="index.html"><img src="assets/img/logo-256.png" alt="" width="40" height="40" />معيار</a>
+    <a class="brand" href="index.html"><img src="assets/img/logo-256.png" alt="" width="40" height="40" />ميزان</a>
     <nav class="links" aria-label="القائمة">{links}</nav>
     <button class="menu-btn" aria-label="القائمة" aria-expanded="false">☰</button>
     <a class="btn primary sm" href="{DOWNLOAD}">{icon('download')}تحميل</a>
@@ -61,21 +61,21 @@ def page(file, title, desc, body, active='', base=''):
   <div class="wrap">
     <div class="cols">
       <div>
-        <a class="brand" href="index.html"><img src="assets/img/logo-256.png" alt="" width="40" height="40" />معيار</a>
+        <a class="brand" href="index.html"><img src="assets/img/logo-256.png" alt="" width="40" height="40" />ميزان</a>
         <p>برنامج محاسبة وإدارة محلات عربي لويندوز، بيشتغل بدون إنترنت. صُنع في سوريا لمحلات بلاد الشام.</p>
       </div>
       <div>
         <h4>البرنامج</h4>
-        <a href="{DOWNLOAD}">تحميل معيار</a>
+        <a href="{DOWNLOAD}">تحميل ميزان</a>
         <a href="index.html#sectors">مجالات العمل</a>
         <a href="index.html#videos">فيديوهات الشرح</a>
         <a href="index.html#pricing">الأسعار</a>
         <a href="index.html#faq">الأسئلة الشائعة</a>
-        <a href="media/Mizan-Brochure.pdf" download>بروشور معيار (PDF)</a>
+        <a href="media/Mizan-Brochure.pdf" download>بروشور ميزان (PDF)</a>
       </div>
       <div>
         <h4>الشركة</h4>
-        <a href="agents.html">كن وكيلاً لمعيار</a>
+        <a href="agents.html">كن وكيلاً لميزان</a>
         <a href="terms.html">الشروط والأحكام</a>
         <a href="privacy.html">سياسة الخصوصية</a>
       </div>
@@ -85,7 +85,7 @@ def page(file, title, desc, body, active='', base=''):
         <a href="https://wa.me/{WA2}" rel="noopener"><span class="ltr">{PH2}</span></a>
       </div>
     </div>
-    <div class="copy"><span>© <span data-year>2026</span> معيار. جميع الحقوق محفوظة.</span><span>حساباتك بمعيار دقيق</span></div>
+    <div class="copy"><span>© <span data-year>2026</span> ميزان. جميع الحقوق محفوظة.</span><span>حساباتك صارت بميزان</span></div>
   </div>
 </footer>
 <a class="wa-float" href="https://wa.me/{WA1}" rel="noopener" aria-label="راسلنا واتساب">{icon('message-circle')}</a>
