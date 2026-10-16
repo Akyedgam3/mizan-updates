@@ -1,5 +1,5 @@
 # ينشر ملف التنصيب كـ Release. يُدفع الملف على فرع مؤقت "upload/<النسخة>"
-# فيه release/Mizan-Setup.exe و release/NOTES.md، وبعد النشر بينحذف الفرع
+# فيه release/Miyar-Setup.exe (ونسخة Mizan-Setup.exe للروابط القديمة) و release/NOTES.md، وبعد النشر بينحذف الفرع
 # حتى ما يكبر حجم المستودع.
 name: Publish installer
 
@@ -20,13 +20,13 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           VERSION="${GITHUB_REF_NAME#upload/}"
-          test -f release/Mizan-Setup.exe
+          ls release/*.exe
           NOTES="release/NOTES.md"
-          [ -f "$NOTES" ] || echo "ميزان $VERSION" > "$NOTES"
+          [ -f "$NOTES" ] || echo "معيار $VERSION" > "$NOTES"
           if gh release view "v$VERSION" >/dev/null 2>&1; then
-            gh release upload "v$VERSION" release/Mizan-Setup.exe --clobber
+            gh release upload "v$VERSION" release/*.exe --clobber
           else
-            gh release create "v$VERSION" release/Mizan-Setup.exe --title "ميزان $VERSION" --notes-file "$NOTES" --target main --latest
+            gh release create "v$VERSION" release/*.exe --title "معيار $VERSION" --notes-file "$NOTES" --target main --latest
           fi
       - name: Remove the upload branch
         if: always()
