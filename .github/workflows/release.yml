@@ -22,11 +22,11 @@ jobs:
           VERSION="${GITHUB_REF_NAME#upload/}"
           ls release/*.exe
           NOTES="release/NOTES.md"
-          [ -f "$NOTES" ] || echo "معيار $VERSION" > "$NOTES"
+          [ -f "$NOTES" ] || echo "ميزان $VERSION" > "$NOTES"
           if gh release view "v$VERSION" >/dev/null 2>&1; then
             gh release upload "v$VERSION" release/*.exe --clobber
           else
-            gh release create "v$VERSION" release/*.exe --title "معيار $VERSION" --notes-file "$NOTES" --target main --latest
+            gh release create "v$VERSION" release/*.exe --title "ميزان $VERSION" --notes-file "$NOTES" --target main --latest
           fi
       - name: Remove the upload branch
         if: always()
