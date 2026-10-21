@@ -1,5 +1,7 @@
 rules_version = '2';
-// قواعد تقييمات وزن: الكل بيقرأ، وكل مستخدم مسجّل بغوغل بيكتب أو بيحذف تقييمه هو بس (مستند باسم uid تبعه).
+// 1) تقييمات وزن: الكل بيقرأ، وكل مستخدم مسجّل بغوغل بيكتب أو بيحذف تقييمه هو بس (مستند باسم uid تبعه).
+// 2) الاتصال عن بعد (rooms): بيانات مشفّرة من البرنامج نفسه. اسم الغرفة سرّي (مشتق من رمز الاتصال)،
+//    وما في طريقة لعرض قائمة الغرف. القواعد بتحدد شكل الوثائق وحجمها بس، والتشفير بيحمي المحتوى.
 service cloud.firestore {
   match /databases/{database}/documents {
     match /reviews/{uid} {
@@ -15,6 +17,29 @@ service cloud.firestore {
         && (!('business' in request.resource.data) || (request.resource.data.business is string && request.resource.data.business.size() <= 60))
         && (!('photo' in request.resource.data) || (request.resource.data.photo is string && request.resource.data.photo.size() <= 500));
       allow delete: if request.auth != null && request.auth.uid == uid;
+    }
+
+    match /rooms/{room}/{coll}/{id} {
+      function okRoom() {
+        return room.matches('^[0-9a-f]{40}$') && coll in ['events', 'meta', 'req', 'res', 'snap'];
+      }
+      function okPlace() {
+        return okRoom() && id.size() <= 80;
+      }
+      function okInt(d, k) {
+        return !(k in d) || (d[k] is int && d[k] >= 0);
+      }
+      function okData() {
+        let d = request.resource.data;
+        return d.keys().hasOnly(['iv', 'ct', 'last', 'epoch', 'seen', 'at'])
+          && (!('iv' in d) || (d.iv is string && d.iv.size() <= 32))
+          && (!('ct' in d) || (d.ct is string && d.ct.size() <= 950000))
+          && okInt(d, 'last') && okInt(d, 'epoch') && okInt(d, 'seen') && okInt(d, 'at');
+      }
+      allow get: if okPlace();
+      allow list: if okRoom();
+      allow create, update: if okPlace() && okData();
+      allow delete: if okPlace();
     }
   }
 }
