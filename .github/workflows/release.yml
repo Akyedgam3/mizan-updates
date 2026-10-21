@@ -1,5 +1,5 @@
-# ينشر ملف التنصيب كـ Release. يُدفع الملف على فرع مؤقت "upload/<النسخة>"
-# فيه release/Miyar-Setup.exe (ونسخة Mizan-Setup.exe للروابط القديمة) و release/NOTES.md، وبعد النشر بينحذف الفرع
+# ينشر ملفات التنصيب كـ Release. يُدفع الملف على فرع مؤقت "upload/<النسخة>"
+# فيه release/Wazn-Setup.exe (ونسخ Mizan/Miyar للروابط القديمة) أو release/Wazn.apk (تطبيق أندرويد) و release/NOTES.md، وبعد النشر بينحذف الفرع
 # حتى ما يكبر حجم المستودع.
 name: Publish installer
 
@@ -20,13 +20,15 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           VERSION="${GITHUB_REF_NAME#upload/}"
-          ls release/*.exe
+          FILES=$(ls release/*.exe release/*.apk 2>/dev/null || true)
+          [ -n "$FILES" ] || { echo "ما في ملفات بـ release/"; exit 1; }
+          echo "$FILES"
           NOTES="release/NOTES.md"
           [ -f "$NOTES" ] || echo "وزن $VERSION" > "$NOTES"
           if gh release view "v$VERSION" >/dev/null 2>&1; then
-            gh release upload "v$VERSION" release/*.exe --clobber
+            gh release upload "v$VERSION" $FILES --clobber
           else
-            gh release create "v$VERSION" release/*.exe --title "وزن $VERSION" --notes-file "$NOTES" --target main --latest
+            gh release create "v$VERSION" $FILES --title "وزن $VERSION" --notes-file "$NOTES" --target main --latest
           fi
       - name: Remove the upload branch
         if: always()
