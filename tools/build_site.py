@@ -7,6 +7,7 @@ SRC = os.path.join(ROOT, 'tools', 'pages')
 
 SITE = 'https://akyedgam3.github.io/mizan-updates/'
 DOWNLOAD = 'https://github.com/Akyedgam3/mizan-updates/releases/latest/download/Wazn-Setup.exe'
+APK = 'https://github.com/Akyedgam3/mizan-updates/releases/latest/download/Wazn.apk'
 WA1, WA2 = '963968037609', '963980072891'
 PH1, PH2 = '+963 968 037 609', '+963 980 072 891'
 # رقم آخر نسخة: بيتحدّث لحالو من scripts/publish-release.sh بمستودع البرنامج
@@ -66,7 +67,8 @@ def page(file, title, desc, body, active='', base=''):
       </div>
       <div>
         <h4>البرنامج</h4>
-        <a href="{DOWNLOAD}">تحميل وزن</a>
+        <a href="{DOWNLOAD}">تحميل وزن للكمبيوتر</a>
+        <a href="{APK}">تطبيق وزن لأندرويد</a>
         <a href="index.html#sectors">مجالات العمل</a>
         <a href="reviews.html">تقييمات الزباين</a>
         <a href="index.html#pricing">الأسعار</a>
@@ -99,7 +101,7 @@ def render(name):
     raw = open(os.path.join(SRC, name), encoding='utf8').read()
     meta, body = raw.split('\n---\n', 1)
     m = dict(line.split(': ', 1) for line in meta.strip().splitlines())
-    for k, v in {'DOWNLOAD': DOWNLOAD, 'WA1': WA1, 'WA2': WA2, 'PH1': PH1, 'PH2': PH2, 'VERSION': VERSION}.items():
+    for k, v in {'DOWNLOAD': DOWNLOAD, 'APK': APK, 'WA1': WA1, 'WA2': WA2, 'PH1': PH1, 'PH2': PH2, 'VERSION': VERSION}.items():
         body = body.replace('{{' + k + '}}', v)
     import re
     body = re.sub(r'\{\{icon:([a-z0-9-]+)\}\}', lambda x: icon(x.group(1)), body)
