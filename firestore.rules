@@ -1,0 +1,20 @@
+rules_version = '2';
+// قواعد تقييمات وزن: الكل بيقرأ، وكل مستخدم مسجّل بغوغل بيكتب أو بيحذف تقييمه هو بس (مستند باسم uid تبعه).
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /reviews/{uid} {
+      allow read: if true;
+      allow create, update: if request.auth != null
+        && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['name', 'photo', 'stars', 'text', 'business', 'createdAt', 'updatedAt'])
+        && request.resource.data.stars is int
+        && request.resource.data.stars >= 1 && request.resource.data.stars <= 5
+        && request.resource.data.name is string && request.resource.data.name.size() <= 60
+        && request.resource.data.text is string && request.resource.data.text.size() <= 600
+        && request.resource.data.updatedAt == request.time
+        && (!('business' in request.resource.data) || (request.resource.data.business is string && request.resource.data.business.size() <= 60))
+        && (!('photo' in request.resource.data) || (request.resource.data.photo is string && request.resource.data.photo.size() <= 500));
+      allow delete: if request.auth != null && request.auth.uid == uid;
+    }
+  }
+}
