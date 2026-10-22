@@ -1,0 +1,22 @@
+{
+  "name": "وزن",
+  "short_name": "وزن",
+  "description": "وزن: الاتصال عن بعد ببيانات المحل",
+  "lang": "ar",
+  "dir": "rtl",
+  "display": "standalone",
+  "background_color": "#0b2d27",
+  "theme_color": "#12302b",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
