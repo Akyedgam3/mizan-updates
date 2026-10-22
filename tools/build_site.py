@@ -5,11 +5,12 @@ import os
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, 'tools', 'pages')
 
-SITE = 'https://akyedgam3.github.io/mizan-updates/'
+SITE = 'https://waznsy.com/'
 DOWNLOAD = 'https://github.com/Akyedgam3/mizan-updates/releases/latest/download/Wazn-Setup.exe'
 APK = 'https://github.com/Akyedgam3/mizan-updates/releases/latest/download/Wazn.apk'
 WA1, WA2 = '963968037609', '963980072891'
 PH1, PH2 = '+963 968 037 609', '+963 980 072 891'
+EMAIL = 'info@waznsy.com'
 # رقم آخر نسخة: بيتحدّث لحالو من scripts/publish-release.sh بمستودع البرنامج
 VERSION = open(os.path.join(ROOT, 'tools', 'version.txt'), encoding='utf8').read().strip()
 
@@ -82,9 +83,10 @@ def page(file, title, desc, body, active='', base=''):
         <a href="privacy.html">سياسة الخصوصية</a>
       </div>
       <div>
-        <h4>تواصل معنا (واتساب)</h4>
+        <h4>تواصل معنا</h4>
         <a href="https://wa.me/{WA1}" rel="noopener"><span class="ltr">{PH1}</span></a>
         <a href="https://wa.me/{WA2}" rel="noopener"><span class="ltr">{PH2}</span></a>
+        <a href="mailto:{EMAIL}"><span class="ltr">{EMAIL}</span></a>
       </div>
     </div>
     <div class="copy"><span>© <span data-year>2026</span> وزن. جميع الحقوق محفوظة.</span><span>كل شي بوزنه</span></div>
@@ -101,7 +103,7 @@ def render(name):
     raw = open(os.path.join(SRC, name), encoding='utf8').read()
     meta, body = raw.split('\n---\n', 1)
     m = dict(line.split(': ', 1) for line in meta.strip().splitlines())
-    for k, v in {'DOWNLOAD': DOWNLOAD, 'APK': APK, 'WA1': WA1, 'WA2': WA2, 'PH1': PH1, 'PH2': PH2, 'VERSION': VERSION}.items():
+    for k, v in {'DOWNLOAD': DOWNLOAD, 'APK': APK, 'WA1': WA1, 'WA2': WA2, 'PH1': PH1, 'PH2': PH2, 'EMAIL': EMAIL, 'VERSION': VERSION}.items():
         body = body.replace('{{' + k + '}}', v)
     import re
     body = re.sub(r'\{\{icon:([a-z0-9-]+)\}\}', lambda x: icon(x.group(1)), body)
