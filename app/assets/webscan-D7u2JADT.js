@@ -1,4 +1,4 @@
-import{_ as l}from"./mobile-C--wR8LV.js";async function v(){if(!navigator.mediaDevices?.getUserMedia)throw new Error("المتصفح ما بيدعم الكاميرا. افتح الموقع بسفاري أو كروم.");const{BrowserMultiFormatReader:s}=await l(async()=>{const{BrowserMultiFormatReader:r}=await import("./index-ffRL9guZ.js");return{BrowserMultiFormatReader:r}},[],import.meta.url),t=document.createElement("div");t.className="web-scan",t.innerHTML=`
+import{_ as l}from"./mobile-CcxRhkjs.js";async function v(){if(!navigator.mediaDevices?.getUserMedia)throw new Error("المتصفح ما بيدعم الكاميرا. افتح الموقع بسفاري أو كروم.");const{BrowserMultiFormatReader:s}=await l(async()=>{const{BrowserMultiFormatReader:r}=await import("./index-ffRL9guZ.js");return{BrowserMultiFormatReader:r}},[],import.meta.url),t=document.createElement("div");t.className="web-scan",t.innerHTML=`
     <video playsinline muted autoplay></video>
     <div class="web-scan-frame"><i></i></div>
     <p class="web-scan-hint">وجّه الكاميرا عالباركود</p>
