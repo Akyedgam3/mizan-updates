@@ -383,3 +383,5 @@ button.link.danger { color: #c0392b; }
 .agent-plan .save { margin: 6px 0 0; }
 @media (max-width: 900px) { .agent-plans { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 520px) { .agent-plans { grid-template-columns: 1fr; } }
+.price-cap { display: flex; gap: 14px; align-items: flex-start; margin-top: 24px; padding: 18px 20px; border-radius: 18px; background: #fff7e6; border: 1.5px solid #e7b75a; line-height: 1.9; }
+.price-cap > svg { width: 30px; height: 30px; color: #b7791f; flex: none; margin-top: 4px; }
