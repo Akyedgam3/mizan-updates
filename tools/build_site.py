@@ -20,7 +20,7 @@ def icon(name, cls=''):
     return f'<svg{c} aria-hidden="true"><use href="assets/img/icons.svg#{name}"/></svg>'
 
 
-NAV = [('index.html', 'الرئيسية'), ('index.html#sectors', 'المجالات'), ('index.html#features', 'المزايا'), ('index.html#pricing', 'الأسعار'), ('index.html#videos', 'فيديوهات'), ('reviews.html', 'التقييمات'), ('agents.html', 'كن وكيلاً'), ('index.html#faq', 'أسئلة')]
+NAV = [('index.html', 'الرئيسية'), ('index.html#sectors', 'المجالات'), ('index.html#features', 'المزايا'), ('index.html#pricing', 'الاشتراك'), ('index.html#videos', 'فيديوهات'), ('reviews.html', 'التقييمات'), ('agents.html', 'كن وكيلاً'), ('index.html#faq', 'أسئلة')]
 
 
 def page(file, title, desc, body, active='', base=''):
@@ -44,7 +44,7 @@ def page(file, title, desc, body, active='', base=''):
 <meta property="og:image" content="{SITE}assets/img/og.jpg" />
 <link rel="canonical" href="{SITE}{file if file != 'index.html' else ''}" />
 <link rel="preload" href="assets/fonts/cairo-arabic-900-normal.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="stylesheet" href="assets/css/site.css?v=5" />
+<link rel="stylesheet" href="assets/css/site.css?v=6" />
 </head>
 <body>
 <a class="skip" href="#main">تخطَّ إلى المحتوى</a>
@@ -72,9 +72,8 @@ def page(file, title, desc, body, active='', base=''):
         <a href="{APK}">تطبيق وزن لأندرويد</a>
         <a href="index.html#sectors">مجالات العمل</a>
         <a href="reviews.html">تقييمات الزباين</a>
-        <a href="index.html#pricing">الأسعار</a>
+        <a href="index.html#pricing">الاشتراك</a>
         <a href="index.html#faq">الأسئلة الشائعة</a>
-        <a href="media/Mizan-Brochure.pdf" download>بروشور وزن (PDF)</a>
       </div>
       <div>
         <h4>الشركة</h4>
