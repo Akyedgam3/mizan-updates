@@ -20,7 +20,7 @@ def icon(name, cls=''):
     return f'<svg{c} aria-hidden="true"><use href="assets/img/icons.svg#{name}"/></svg>'
 
 
-NAV = [('index.html', 'الرئيسية'), ('index.html#sectors', 'المجالات'), ('index.html#features', 'المزايا'), ('index.html#pricing', 'الأسعار'), ('reviews.html', 'التقييمات'), ('agents.html', 'كن وكيلاً'), ('index.html#faq', 'أسئلة')]
+NAV = [('index.html', 'الرئيسية'), ('index.html#sectors', 'المجالات'), ('index.html#features', 'المزايا'), ('index.html#pricing', 'الأسعار'), ('index.html#videos', 'فيديوهات'), ('reviews.html', 'التقييمات'), ('agents.html', 'كن وكيلاً'), ('index.html#faq', 'أسئلة')]
 
 
 def page(file, title, desc, body, active='', base=''):
