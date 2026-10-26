@@ -3,28 +3,60 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>تحميل وزن</title>
+<title>تحديث وزن</title>
 <meta name="robots" content="noindex" />
+<link rel="icon" href="assets/img/favicon.png" />
 <style>
-body { margin: 0; min-height: 100vh; display: grid; place-items: center; font-family: system-ui, sans-serif; background: #0b2d27; color: #fff; text-align: center; }
-a { display: block; margin: 12px auto; padding: 14px 22px; max-width: 320px; border-radius: 14px; background: #14957c; color: #fff; text-decoration: none; font-weight: 700; }
-a.alt { background: transparent; border: 2px solid #5fe0bf; }
+@font-face { font-family: Cairo; font-weight: 700; src: url(assets/fonts/cairo-arabic-700-normal.woff2); unicode-range: U+0600-06FF, U+200C-200E, U+FB50-FDFF, U+FE70-FEFC; }
+@font-face { font-family: Cairo; font-weight: 900; src: url(assets/fonts/cairo-arabic-900-normal.woff2); unicode-range: U+0600-06FF, U+200C-200E, U+FB50-FDFF, U+FE70-FEFC; }
+@font-face { font-family: Cairo; font-weight: 700; src: url(assets/fonts/cairo-latin-700-normal.woff2); unicode-range: U+0000-00FF; }
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px 16px; font-family: Cairo, system-ui, sans-serif; color: #fff;
+  background: radial-gradient(ellipse at 50% 20%, #12705d 0%, #0a4a3e 45%, #041d17 100%); }
+.box { width: 100%; max-width: 440px; text-align: center; }
+.logo { width: 96px; height: 96px; border-radius: 26px; box-shadow: 0 14px 34px rgba(0, 0, 0, 0.35); }
+h1 { margin: 14px 0 4px; font-size: 30px; font-weight: 900; }
+.ver { color: #5fe0bf; font-weight: 700; margin: 0 0 26px; min-height: 1.5em; }
+.btn { display: flex; align-items: center; gap: 16px; text-align: start; margin: 14px 0; padding: 18px 20px; border-radius: 20px; text-decoration: none; color: #fff;
+  background: rgba(255, 255, 255, 0.08); border: 2px solid rgba(255, 255, 255, 0.18); transition: transform 0.15s; }
+.btn:active { transform: scale(0.98); }
+.btn.mine { background: linear-gradient(135deg, #14957c, #0f6e5c); border-color: #5fe0bf; box-shadow: 0 12px 30px rgba(20, 149, 124, 0.45); }
+.btn svg { width: 46px; height: 46px; flex: none; }
+.btn b { display: block; font-size: 21px; }
+.btn small { display: block; opacity: 0.8; font-size: 14px; }
+.tag { margin-inline-start: auto; font-size: 12px; font-weight: 900; background: #e7b75a; color: #052a22; border-radius: 999px; padding: 3px 10px; white-space: nowrap; visibility: hidden; }
+.mine .tag { visibility: visible; }
+.note { margin-top: 22px; font-size: 14px; opacity: 0.8; line-height: 1.8; }
+.note a { color: #ffe29a; }
 </style>
-<script>
-// رابط واحد للتحديث: الجوال بياخد تطبيق أندرويد، الآيفون نسخة الويب، والكمبيوتر ملف التنصيب
-(function () {
-  var ua = navigator.userAgent || '';
-  var base = 'https://github.com/Akyedgam3/mizan-updates/releases/latest/download/';
-  var to = /android/i.test(ua) ? base + 'Wazn.apk' : /iphone|ipad|ipod/i.test(ua) ? '/app/' : base + 'Wazn-Setup.exe';
-  location.replace(to);
-})();
-</script>
 </head>
 <body>
-<div>
-  <p>عم يبلّش التحميل…</p>
-  <a href="https://github.com/Akyedgam3/mizan-updates/releases/latest/download/Wazn-Setup.exe">وزن للكمبيوتر (ويندوز)</a>
-  <a class="alt" href="https://github.com/Akyedgam3/mizan-updates/releases/latest/download/Wazn.apk">وزن لأندرويد</a>
+<div class="box">
+  <img class="logo" src="assets/img/icon.png" alt="وزن" />
+  <h1>تحديث وزن</h1>
+  <p class="ver" id="ver"></p>
+
+  <a class="btn" id="android" href="https://github.com/Akyedgam3/mizan-updates/releases/latest/download/Wazn.apk">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" /><path d="M12 18h.01" /></svg>
+    <span><b>نسخة الجوال (أندرويد)</b><small>نزّلها وافتح الملف، وبتتحدّث فوق القديمة وبياناتك ما بتنمس</small></span>
+    <span class="tag">جهازك</span>
+  </a>
+
+  <a class="btn" id="windows" href="https://github.com/Akyedgam3/mizan-updates/releases/latest/download/Wazn-Setup.exe">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" /></svg>
+    <span><b>نسخة الكمبيوتر (ويندوز)</b><small>نزّل الملف وشغّله فوق النسخة القديمة، وبياناتك ما بتنمس</small></span>
+    <span class="tag">جهازك</span>
+  </a>
+
+  <p class="note">على الآيفون ما في شي لتحدّثه: نسخة الويب بتتحدّث لحالها.<br />شو الجديد؟ <a href="update.html">من هون</a> · مساعدة؟ <a href="index.html">موقع وزن</a></p>
 </div>
+<script>
+  // منعلّم زر الجهاز اللي فاتح منه
+  var ua = navigator.userAgent || '';
+  document.getElementById(/android/i.test(ua) ? 'android' : /windows|macintosh|linux/i.test(ua) && !/mobile/i.test(ua) ? 'windows' : 'android').classList.add('mine');
+  fetch('tools/version.txt', { cache: 'no-store' }).then(function (r) { return r.ok ? r.text() : ''; }).then(function (v) {
+    if ((v = v.trim())) document.getElementById('ver').textContent = 'النسخة الجديدة ' + v;
+  }).catch(function () {});
+</script>
 </body>
 </html>
