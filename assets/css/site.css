@@ -385,3 +385,12 @@ button.link.danger { color: #c0392b; }
 @media (max-width: 520px) { .agent-plans { grid-template-columns: 1fr; } }
 .price-cap { display: flex; gap: 14px; align-items: flex-start; margin-top: 24px; padding: 18px 20px; border-radius: 18px; background: #fff7e6; border: 1.5px solid #e7b75a; line-height: 1.9; }
 .price-cap > svg { width: 30px; height: 30px; color: #b7791f; flex: none; margin-top: 4px; }
+.services { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 14px; }
+.svc { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 18px; display: flex; flex-direction: column; gap: 6px; }
+.svc b { font-size: 28px; font-weight: 900; color: var(--ink); }
+.svc span { color: var(--muted); font-weight: 700; font-size: 14px; line-height: 1.7; }
+.svc.free { flex-direction: row; gap: 12px; background: #e3f2ee; border-color: #b9e0d5; }
+.svc.free svg { width: 28px; height: 28px; color: var(--g); flex: none; }
+.svc.free b { font-size: 20px; color: var(--g); display: block; }
+@media (max-width: 900px) { .services { grid-template-columns: 1fr 1fr; } .svc.free { grid-column: 1 / -1; } }
+@media (max-width: 520px) { .services { grid-template-columns: 1fr; } }
