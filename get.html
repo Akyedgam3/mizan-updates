@@ -28,6 +28,10 @@ h1 { margin: 14px 0 4px; font-size: 30px; font-weight: 900; }
 .mine .tag { visibility: visible; }
 .note { margin-top: 22px; font-size: 14px; opacity: 0.8; line-height: 1.8; }
 .note a { color: #ffe29a; }
+.help { margin-top: 18px; text-align: start; background: rgba(0, 0, 0, 0.22); border-radius: 18px; padding: 4px 18px; }
+.help summary { cursor: pointer; font-weight: 700; padding: 12px 0; color: #ffe29a; }
+.help ol { margin: 0 0 14px; padding-inline-start: 20px; line-height: 1.9; font-size: 15px; }
+.help b { color: #5fe0bf; }
 </style>
 </head>
 <body>
@@ -47,6 +51,18 @@ h1 { margin: 14px 0 4px; font-size: 30px; font-weight: 900; }
     <span><b>نسخة الكمبيوتر (ويندوز)</b><small>نزّل الملف وشغّله فوق النسخة القديمة، وبياناتك ما بتنمس</small></span>
     <span class="tag">جهازك</span>
   </a>
+
+  <details class="help" id="help">
+    <summary>طلعتلك «التطبيق غير مثبت» بالجوال؟</summary>
+    <ol>
+      <li><b>نزّل الملف من هالصفحة بالمتصفح</b> (كروم)، مش ملف مبعوت على واتساب أو تلغرام. حجمه حوالي 28 ميغا، إذا أصغر يعني ما نزل كامل: نزّله مرة تانية.</li>
+      <li><b>فضّي مساحة:</b> لازم يكون في 100 ميغا فاضية عالأقل.</li>
+      <li><b>اسمح بالتنصيب:</b> إذا سألك «السماح من هذا المصدر» وافق، وارجع افتح الملف.</li>
+      <li><b>Play Protect:</b> إذا طلعتلك رسالة حماية اضغط «التفاصيل» ← «التثبيت على أي حال».</li>
+      <li>إذا عندك نسخة مكرّرة من التطبيق (تطبيق مزدوج أو مساحة تانية) احذف المكرّرة بس.</li>
+      <li>إذا لسا ما زبط: من وزن ← الإعدادات ← <b>اعمل نسخة احتياطية</b> واحفظها، بعدين احذف التطبيق ونصّب الجديد، ورجّع النسخة الاحتياطية.</li>
+    </ol>
+  </details>
 
   <p class="note">على الآيفون ما في شي لتحدّثه: نسخة الويب بتتحدّث لحالها.<br />شو الجديد؟ <a href="update.html">من هون</a> · مساعدة؟ <a href="index.html">موقع وزن</a></p>
 </div>
