@@ -394,3 +394,11 @@ button.link.danger { color: #c0392b; }
 .svc.free b { font-size: 20px; color: var(--g); display: block; }
 @media (max-width: 900px) { .services { grid-template-columns: 1fr 1fr; } .svc.free { grid-column: 1 / -1; } }
 @media (max-width: 520px) { .services { grid-template-columns: 1fr; } }
+
+/* الفيديوهات: عناوين المجموعات، والقصيرة (عمودية) */
+.vgroup { margin: 34px 0 14px; font-size: 22px; color: #fff; }
+.videos + .videos { margin-top: 20px; }
+.videos.shorts { grid-template-columns: repeat(2, minmax(0, 280px)); justify-content: center; }
+.video.short video { aspect-ratio: 9 / 16; }
+@media (max-width: 760px) { .videos.shorts { grid-template-columns: repeat(2, 1fr); } }
+footer .copy .team { color: var(--c2, #e0b341); font-weight: 700; }

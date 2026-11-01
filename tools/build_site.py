@@ -44,7 +44,7 @@ def page(file, title, desc, body, active='', base=''):
 <meta property="og:image" content="{SITE}assets/img/og.jpg" />
 <link rel="canonical" href="{SITE}{file if file != 'index.html' else ''}" />
 <link rel="preload" href="assets/fonts/cairo-arabic-900-normal.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="stylesheet" href="assets/css/site.css?v=9" />
+<link rel="stylesheet" href="assets/css/site.css?v=10" />
 </head>
 <body>
 <a class="skip" href="#main">تخطَّ إلى المحتوى</a>
@@ -88,7 +88,7 @@ def page(file, title, desc, body, active='', base=''):
         <a href="mailto:{EMAIL}"><span class="ltr">{EMAIL}</span></a>
       </div>
     </div>
-    <div class="copy"><span>© <span data-year>2026</span> وزن. جميع الحقوق محفوظة.</span><span>كل شي بوزنه</span></div>
+    <div class="copy"><span>© <span data-year>2026</span> وزن. جميع الحقوق محفوظة.</span><span class="team">مدير فريق تطبيق وزن: أغيد بهلول</span><span>كل شي بوزنه</span></div>
   </div>
 </footer>
 <a class="wa-float" href="https://wa.me/{WA1}" rel="noopener" aria-label="راسلنا واتساب">{icon('message-circle')}</a>
