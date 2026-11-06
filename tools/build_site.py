@@ -107,12 +107,45 @@ def render(name):
     import re
     body = re.sub(r'\{\{icon:([a-z0-9-]+)\}\}', lambda x: icon(x.group(1)), body)
     # صفحة 404 بتنفتح من أي مسار، فروابطها لازم تكون من جذر الموقع
-    out = page(name, m['title'], m['description'], body, m.get('active', ''), m.get('base', ''))
+    fill = lambda t: t.replace('{{VERSION}}', VERSION)
+    out = page(name, fill(m['title']), fill(m['description']), body, m.get('active', ''), m.get('base', ''))
+    if name == 'index.html':
+        out = out.replace('</head>', LD_JSON + '\n</head>', 1)
     open(os.path.join(ROOT, name), 'w', encoding='utf8').write(out)
     print('built', name)
+
+
+# بيانات منظّمة لمحركات البحث (غوغل بيفهم إنو هاد برنامج، وبيعرض اسمه وشعاره صح)
+import json as _json
+LD_JSON = '<script type="application/ld+json">' + _json.dumps([
+    {
+        '@context': 'https://schema.org', '@type': 'SoftwareApplication', 'name': 'وزن', 'alternateName': ['Wazn', 'برنامج وزن للمحاسبة'],
+        'url': SITE, 'image': SITE + 'assets/img/logo-256.png', 'inLanguage': 'ar',
+        'applicationCategory': 'BusinessApplication', 'applicationSubCategory': 'برنامج محاسبة وإدارة محلات',
+        'operatingSystem': 'Windows, Android', 'softwareVersion': VERSION, 'downloadUrl': DOWNLOAD,
+        'description': 'برنامج محاسبة وإدارة محلات عربي يشتغل بدون إنترنت: فواتير، مخزون، ديون، نقطة بيع، مطاعم، ورش، صيدليات، بالليرة والدولار.',
+    },
+    {
+        '@context': 'https://schema.org', '@type': 'Organization', 'name': 'وزن', 'url': SITE, 'logo': SITE + 'assets/img/logo-256.png', 'email': EMAIL,
+        'contactPoint': [{'@type': 'ContactPoint', 'telephone': PH1.replace(' ', ''), 'contactType': 'customer service', 'areaServed': 'SY', 'availableLanguage': 'ar'}],
+    },
+], ensure_ascii=False) + '</script>'
+
+# الصفحات اللي بدنا غوغل يلاقيها (404 وget ما بتنفهرس)
+SITEMAP_PAGES = [('', '1.0', 'weekly'), ('agents.html', '0.8', 'monthly'), ('reviews.html', '0.7', 'weekly'), ('update.html', '0.6', 'weekly'), ('terms.html', '0.3', 'yearly'), ('privacy.html', '0.3', 'yearly')]
+
+
+def seo_files():
+    import datetime
+    today = datetime.date.today().isoformat()
+    urls = ''.join(f'  <url><loc>{SITE}{p}</loc><lastmod>{today}</lastmod><changefreq>{c}</changefreq><priority>{pr}</priority></url>\n' for p, pr, c in SITEMAP_PAGES)
+    open(os.path.join(ROOT, 'sitemap.xml'), 'w', encoding='utf8').write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>\n')
+    open(os.path.join(ROOT, 'robots.txt'), 'w', encoding='utf8').write(f'User-agent: *\nAllow: /\nDisallow: /release/\nDisallow: /get.html\n\nSitemap: {SITE}sitemap.xml\n')
+    print('built sitemap.xml, robots.txt')
 
 
 if __name__ == '__main__':
     for f in sorted(os.listdir(SRC)):
         if f.endswith('.html'):
             render(f)
+    seo_files()

@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /release/
+Disallow: /get.html
+
+Sitemap: https://waznsy.com/sitemap.xml
