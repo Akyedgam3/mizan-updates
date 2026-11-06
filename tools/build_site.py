@@ -20,10 +20,10 @@ def icon(name, cls=''):
     return f'<svg{c} aria-hidden="true"><use href="assets/img/icons.svg#{name}"/></svg>'
 
 
-NAV = [('index.html', 'الرئيسية'), ('index.html#sectors', 'المجالات'), ('index.html#features', 'المزايا'), ('index.html#pricing', 'الاشتراك'), ('index.html#videos', 'فيديوهات'), ('reviews.html', 'التقييمات'), ('agents.html', 'كن وكيلاً'), ('index.html#faq', 'أسئلة')]
+NAV = [('index.html', 'الرئيسية'), ('sectors.html', 'المجالات'), ('index.html#features', 'المزايا'), ('index.html#pricing', 'الاشتراك'), ('index.html#videos', 'فيديوهات'), ('reviews.html', 'التقييمات'), ('agents.html', 'كن وكيلاً'), ('index.html#faq', 'أسئلة')]
 
 
-def page(file, title, desc, body, active='', base=''):
+def page(file, title, desc, body, active='', base='', head=''):
     links = ''.join(f'<a href="{h}"{" class=on" if h == active else ""}>{t}</a>' for h, t in NAV)
     return f'''<!doctype html>
 <html lang="ar" dir="rtl">
@@ -42,9 +42,9 @@ def page(file, title, desc, body, active='', base=''):
 <meta property="og:description" content="{desc}" />
 <meta property="og:url" content="{SITE}{file if file != 'index.html' else ''}" />
 <meta property="og:image" content="{SITE}assets/img/og.jpg" />
-<link rel="canonical" href="{SITE}{file if file != 'index.html' else ''}" />
+<link rel="canonical" href="{SITE}{file if file != 'index.html' else ''}" />{'<meta name="robots" content="noindex" />' if file == '404.html' else ''}{head}
 <link rel="preload" href="assets/fonts/cairo-arabic-900-normal.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="stylesheet" href="assets/css/site.css?v=10" />
+<link rel="stylesheet" href="assets/css/site.css?v=11" />
 </head>
 <body>
 <a class="skip" href="#main">تخطَّ إلى المحتوى</a>
@@ -131,8 +131,99 @@ LD_JSON = '<script type="application/ld+json">' + _json.dumps([
     },
 ], ensure_ascii=False) + '</script>'
 
+from sectors import SECTORS
+
 # الصفحات اللي بدنا غوغل يلاقيها (404 وget ما بتنفهرس)
-SITEMAP_PAGES = [('', '1.0', 'weekly'), ('agents.html', '0.8', 'monthly'), ('reviews.html', '0.7', 'weekly'), ('update.html', '0.6', 'weekly'), ('terms.html', '0.3', 'yearly'), ('privacy.html', '0.3', 'yearly')]
+SITEMAP_PAGES = [('', '1.0', 'weekly'), ('sectors.html', '0.9', 'monthly')] + [(f"{x['slug']}.html", '0.8', 'monthly') for x in SECTORS] + [('agents.html', '0.8', 'monthly'), ('reviews.html', '0.7', 'weekly'), ('update.html', '0.6', 'weekly'), ('terms.html', '0.3', 'yearly'), ('privacy.html', '0.3', 'yearly')]
+
+
+def esc(t):
+    return t.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;')
+
+
+def ld(obj):
+    return '\n<script type="application/ld+json">' + _json.dumps(obj, ensure_ascii=False) + '</script>'
+
+
+def crumbs(items):
+    return {'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': [{'@type': 'ListItem', 'position': i + 1, 'name': n, 'item': SITE + u} for i, (n, u) in enumerate(items)]}
+
+
+def sector_page(x):
+    """صفحة مجال: مقدمة، ميزات خاصة بالمجال، كيف بيمشي اليوم، أسئلة، ومجالات تانية."""
+    feats = ''.join(f'<div class="sector reveal"><h3>{esc(t)}</h3><p>{esc(d)}</p></div>' for t, d in x['features'])
+    steps = ''.join(f'<li>{icon("circle-check-big")}{esc(st)}</li>' for st in x['steps'])
+    faq = ''.join(f'<details class="reveal"><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q, a in x['faq'])
+    others = ''.join(f'<a class="chip" href="{o["slug"]}.html">{icon(o["icon"])}{esc(o["name"])}</a>' for o in SECTORS if o['slug'] != x['slug'])
+    img, alt = x['shot']
+    body = f'''<div class="dark">
+  <div class="blob a"></div><div class="blob b"></div><div class="grid-bg"></div>
+  <div class="page-hero">
+    <div class="wrap reveal">
+      <nav class="crumbs" aria-label="المسار"><a href="index.html">الرئيسية</a> ‹ <a href="sectors.html">المجالات</a> ‹ <span>{esc(x['name'])}</span></nav>
+      <h1>{esc(x['h1'])}</h1>
+      <p>{esc(x['intro'])}</p>
+      <div class="cta"><a class="btn primary" href="{DOWNLOAD}">{icon('download')}تحميل وزن لويندوز</a><a class="btn ghost" href="{APK}">{icon('smartphone')}تطبيق أندرويد</a><a class="btn ghost" href="https://wa.me/{WA1}" rel="noopener">{icon('message-circle')}جرّبه ببلاش، راسلنا</a></div>
+    </div>
+  </div>
+  <div style="height:40px"></div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="feature">
+      <div class="ftxt reveal">
+        <div class="tag">{esc(x['name'])}</div>
+        <h2>كيف بيمشي يومك مع وزن</h2>
+        <ul class="checks">{steps}</ul>
+        <p>وكل شي بيشتغل بدون إنترنت، والبيانات محفوظة على جهازك ومشفّرة. بالليرة والدولار، بفواتير بشعار محلك، وتقارير أرباح وديون وصندوق.</p>
+      </div>
+      <div class="reveal d2"><div class="shot"><img src="assets/img/{img}" alt="{esc(alt)}" width="1200" height="750" loading="lazy" /></div></div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#fff">
+  <div class="wrap">
+    <div class="head reveal"><div class="tag">مخصص لـ {esc(x['name'])}</div><h2>شو بيعطيك وزن بالزبط</h2></div>
+    <div class="sectors">{feats}</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head reveal"><div class="tag">أسئلة</div><h2>أسئلة أصحاب محلات {esc(x['name'])}</h2></div>
+    <div class="faq">{faq}<details class="reveal"><summary>بيشتغل بدون إنترنت؟</summary><p>إي، كل الشغل على جهازك. البرنامج بس بيتصل كل كم يوم ليتأكد من الاشتراك ويشوف التحديثات.</p></details><details class="reveal"><summary>كيف بجرّبه؟</summary><p>نزّل البرنامج وراسلنا واتساب، ومنفعّلك نسخة تجريبية مع بيانات تجريبية لمجالك.</p></details></div>
+  </div>
+</section>
+
+<section style="background:#fff">
+  <div class="wrap">
+    <div class="head reveal"><div class="tag">برنامج واحد لكل المجالات</div><h2>مجالات تانية بيخدمها وزن</h2></div>
+    <div class="chips reveal">{others}</div>
+  </div>
+</section>'''
+    head = ld(crumbs([('الرئيسية', ''), ('المجالات', 'sectors.html'), (x['name'], f"{x['slug']}.html")]))
+    head += ld({'@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': [{'@type': 'Question', 'name': q, 'acceptedAnswer': {'@type': 'Answer', 'text': a}} for q, a in x['faq']]})
+    out = page(f"{x['slug']}.html", x['title'], x['description'], body, 'sectors.html', '', head)
+    open(os.path.join(ROOT, f"{x['slug']}.html"), 'w', encoding='utf8').write(out)
+    print('built', x['slug'] + '.html')
+
+
+def sectors_hub():
+    cards = ''.join(f'<a class="sector reveal" href="{x["slug"]}.html"><div class="ic">{icon(x["icon"])}</div><h3>{esc(x["name"])}</h3><p>{esc(x["description"].split(":")[0])}</p></a>' for x in SECTORS)
+    body = f'''<div class="dark">
+  <div class="blob a"></div><div class="blob b"></div><div class="grid-bg"></div>
+  <div class="page-hero"><div class="wrap reveal">
+    <h1>برنامج محاسبة لكل مجال</h1>
+    <p>«وزن» برنامج واحد بيتجهّز حسب نوع شغلك: وقت إنشاء الشركة بتختار مجالك، فبتطلعلك الشاشات والميزات اللي بتلزمك. اختار مجالك لتشوف شو بيعطيك بالزبط.</p>
+  </div></div>
+  <div style="height:40px"></div>
+</div>
+<section><div class="wrap"><div class="sectors">{cards}</div></div></section>'''
+    out = page('sectors.html', 'برنامج محاسبة لكل مجال: سوبرماركت، مطاعم، صيدليات وغيرها — وزن', 'اختار مجال شغلك وشوف كيف بيخدمه برنامج وزن للمحاسبة وإدارة المحلات: سوبرماركت، مطاعم، صيدليات، موبايلات، ألبسة، قطع غيار، مواد بناء، خضار ولحوم، حلويات، جملة، خياطة وكهربائيات.', body, 'sectors.html', '', ld(crumbs([('الرئيسية', ''), ('المجالات', 'sectors.html')])))
+    open(os.path.join(ROOT, 'sectors.html'), 'w', encoding='utf8').write(out)
+    print('built sectors.html')
 
 
 def seo_files():
@@ -148,4 +239,7 @@ if __name__ == '__main__':
     for f in sorted(os.listdir(SRC)):
         if f.endswith('.html'):
             render(f)
+    for x in SECTORS:
+        sector_page(x)
+    sectors_hub()
     seo_files()
