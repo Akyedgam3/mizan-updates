@@ -80,6 +80,7 @@ def page(file, title, desc, body, active='', base='', head=''):
         <a href="agents.html">كن وكيلاً لوزن</a>
         <a href="terms.html">الشروط والأحكام</a>
         <a href="privacy.html">سياسة الخصوصية</a>
+        <a href="privacy.html#en" lang="en">Privacy Policy (English)</a>
       </div>
       <div>
         <h4>تواصل معنا</h4>
@@ -88,7 +89,7 @@ def page(file, title, desc, body, active='', base='', head=''):
         <a href="mailto:{EMAIL}"><span class="ltr">{EMAIL}</span></a>
       </div>
     </div>
-    <div class="copy"><span>© <span data-year>2026</span> وزن. جميع الحقوق محفوظة.</span><span class="team">مدير فريق تطبيق وزن: أغيد بهلول</span><span>كل شي بوزنه</span></div>
+    <div class="copy"><span>© <span data-year>2026</span> وزن (Wazn). جميع الحقوق محفوظة.</span><span class="team">مدير فريق تطبيق وزن: أغيد بهلول</span><span>كل شي بوزنه</span></div>
   </div>
 </footer>
 <a class="wa-float" href="https://wa.me/{WA1}" rel="noopener" aria-label="راسلنا واتساب">{icon('message-circle')}</a>
