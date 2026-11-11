@@ -44,7 +44,7 @@ def page(file, title, desc, body, active='', base='', head=''):
 <meta property="og:image" content="{SITE}assets/img/og.jpg" />
 <link rel="canonical" href="{SITE}{file if file != 'index.html' else ''}" />{'<meta name="robots" content="noindex" />' if file == '404.html' else ''}{head}
 <link rel="preload" href="assets/fonts/cairo-arabic-900-normal.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="stylesheet" href="assets/css/site.css?v=12" />
+<link rel="stylesheet" href="assets/css/site.css?v=13" />
 </head>
 <body>
 <a class="skip" href="#main">تخطَّ إلى المحتوى</a>
@@ -93,7 +93,7 @@ def page(file, title, desc, body, active='', base='', head=''):
   </div>
 </footer>
 <a class="wa-float" href="https://wa.me/{WA1}" rel="noopener" aria-label="راسلنا واتساب">{icon('message-circle')}</a>
-<script src="assets/js/site.js?v=3" defer></script>
+<script src="assets/js/site.js?v=4" defer></script>
 </body>
 </html>
 '''

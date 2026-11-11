@@ -456,3 +456,16 @@ a.sector p { color: var(--muted); }
   .stage-bar, .stage-head .tag { display: none; }
   .sector.reveal, .card.reveal, .stat.reveal { transform: none; }
 }
+
+/* اختيار نسخة ويندوز عند التحميل */
+.dl-pick { border: 0; border-radius: var(--r); padding: 0; width: min(440px, calc(100vw - 32px)); box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35); color: var(--ink); background: var(--card); }
+.dl-pick::backdrop { background: rgba(7, 26, 23, 0.6); }
+.dl-pick form { padding: 26px 22px 20px; display: grid; gap: 12px; position: relative; }
+.dl-pick h3 { margin: 0 0 4px; font-size: 22px; }
+.dl-x { position: absolute; top: 10px; inset-inline-start: 12px; border: 0; background: none; font-size: 28px; line-height: 1; cursor: pointer; color: var(--muted); }
+.dl-opt { display: grid; gap: 2px; padding: 14px 16px; border: 2px solid var(--line); border-radius: 14px; color: var(--ink); text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
+.dl-opt:hover { border-color: var(--g2); text-decoration: none; transform: translateY(-1px); }
+.dl-opt.main { border-color: var(--c2); background: linear-gradient(135deg, rgba(231, 183, 90, 0.12), rgba(201, 149, 47, 0.06)); }
+.dl-opt b { font-size: 18px; }
+.dl-opt small { color: var(--muted); font-size: 14px; }
+.dl-how { margin: 4px 0 0; font-size: 14px; color: var(--muted); line-height: 1.7; }

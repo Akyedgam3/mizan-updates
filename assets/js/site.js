@@ -171,4 +171,34 @@
 
   // سنة حقوق النشر
   $$('[data-year]').forEach((el) => (el.textContent = new Date().getFullYear()));
+
+  // زر التحميل: اختيار ويندوز 64 بت (الأغلب) أو 32 بت (الأجهزة القديمة)
+  const SETUP = /\/(Wazn|Mizan|Miyar)-Setup\.exe$/i;
+  const URL32 = 'https://github.com/Akyedgam3/mizan-updates/releases/latest/download/Wazn-Setup-32bit.exe';
+  let dl = null;
+  const pick = (url64) => {
+    if (!dl) {
+      dl = document.createElement('dialog');
+      dl.className = 'dl-pick';
+      dl.innerHTML =
+        '<form method="dialog">' +
+        '<button class="dl-x" aria-label="إغلاق">×</button>' +
+        '<h3>اختار نسخة ويندوز</h3>' +
+        '<a class="dl-opt main" data-arch="64"><b>ويندوز 64 بت</b><small>لأغلب الأجهزة. إذا مو متأكد اختار هي</small></a>' +
+        '<a class="dl-opt" data-arch="32" href="' + URL32 + '"><b>ويندوز 32 بت</b><small>للأجهزة القديمة (ويندوز 10 بنظام 32 بت)</small></a>' +
+        '<p class="dl-how">كيف بعرف؟ من <b>الإعدادات ← النظام ← حول</b>، شوف «نوع النظام». إذا نزّلت 64 بت وطلعتلك رسالة إنو ما بيشتغل على هالجهاز، نزّل 32 بت.</p>' +
+        '</form>';
+      document.body.append(dl);
+      dl.addEventListener('click', (e) => { if (e.target === dl) dl.close(); });
+      $$('.dl-opt', dl).forEach((a) => a.addEventListener('click', () => setTimeout(() => dl.close(), 300)));
+    }
+    $('.dl-opt.main', dl).href = url64;
+    dl.showModal();
+  };
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest && e.target.closest('a[href]');
+    if (!a || a.closest('.dl-pick') || !SETUP.test(a.getAttribute('href')) || typeof HTMLDialogElement !== 'function') return;
+    e.preventDefault();
+    pick(a.href);
+  });
 })();
