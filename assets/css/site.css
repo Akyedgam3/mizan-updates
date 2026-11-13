@@ -381,6 +381,14 @@ button.link.danger { color: #c0392b; }
 .agent-plan .row b small { font-size: 14px; color: var(--muted); }
 .agent-plan .per { font-size: 13px; color: var(--muted); text-align: end; margin-bottom: 10px; }
 .agent-plan .save { margin: 6px 0 0; }
+.flex-plan { grid-column: 1 / -1; }
+.flex-plan .flex-in { display: grid; grid-template-columns: 1.6fr 1fr; gap: 24px; align-items: center; }
+.flex-list { list-style: none; padding: 0; margin: 4px 0 0; display: grid; gap: 8px; }
+.flex-list li { display: flex; gap: 8px; align-items: flex-start; color: var(--ink); font-weight: 600; }
+.flex-list li svg { flex: none; color: var(--g); margin-top: 3px; width: 18px; height: 18px; }
+.flex-price { background: var(--g-soft, #e9f6f2); border-radius: 16px; padding: 16px 18px; }
+.flex-price .row b { font-size: 32px; }
+@media (max-width: 700px) { .flex-plan .flex-in { grid-template-columns: 1fr; } }
 @media (max-width: 900px) { .agent-plans { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 520px) { .agent-plans { grid-template-columns: 1fr; } }
 .price-cap { display: flex; gap: 14px; align-items: flex-start; margin-top: 24px; padding: 18px 20px; border-radius: 18px; background: #fff7e6; border: 1.5px solid #e7b75a; line-height: 1.9; }
