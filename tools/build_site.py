@@ -93,7 +93,7 @@ def page(file, title, desc, body, active='', base='', head=''):
   </div>
 </footer>
 <a class="wa-float" href="https://wa.me/{WA1}" rel="noopener" aria-label="راسلنا واتساب">{icon('message-circle')}</a>
-<script src="assets/js/site.js?v=4" defer></script>
+<script src="assets/js/site.js?v=5" defer></script>
 </body>
 </html>
 '''
