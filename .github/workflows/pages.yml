@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # بعد كل Release جديد (release.yml بيشغّله) لتتحدّث نسخ /dl
+  release:
+    types: [published]
 permissions:
   contents: read
   pages: write
@@ -20,6 +23,15 @@ jobs:
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      # نسخة من ملفات آخر Release على الموقع نفسه (waznsy.com/dl/...): بسوريا روابط GitHub Releases بدها VPN
+      - name: Copy latest installers to /dl
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p dl
+          gh release download --repo "$GITHUB_REPOSITORY" --dir dl --clobber \
+            --pattern 'Wazn-Setup.exe' --pattern 'Wazn-Setup-32bit.exe' --pattern 'Wazn.apk' || echo "ما قدرنا نجيب الملفات"
+          ls -la dl
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .

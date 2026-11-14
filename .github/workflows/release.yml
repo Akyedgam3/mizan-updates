@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 jobs:
   publish:
@@ -30,6 +31,11 @@ jobs:
           else
             gh release create "v$VERSION" $FILES --title "وزن $VERSION" --notes-file "$NOTES" --target main --latest
           fi
+      # Release اللي بيعمله GITHUB_TOKEN ما بيشغّل pages.yml لحالو، فمنشغّله يدوياً لتتحدّث نسخ waznsy.com/dl
+      - name: Refresh site downloads
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run pages.yml --ref main || true
       - name: Remove the upload branch
         if: always()
         env:
