@@ -6,8 +6,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, 'tools', 'pages')
 
 SITE = 'https://waznsy.com/'
-DOWNLOAD = 'https://github.com/Akyedgam3/mizan-updates/releases/latest/download/Wazn-Setup.exe'
-APK = 'https://github.com/Akyedgam3/mizan-updates/releases/latest/download/Wazn.apk'
+DOWNLOAD = 'https://waznsy.com/dl/Wazn-Setup.exe'
+APK = 'https://waznsy.com/dl/Wazn.apk'
 WA1, WA2 = '963968037609', '963980072891'
 PH1, PH2 = '+963 968 037 609', '+963 980 072 891'
 EMAIL = 'info@waznsy.com'

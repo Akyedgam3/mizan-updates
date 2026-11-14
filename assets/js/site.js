@@ -174,7 +174,7 @@
 
   // زر التحميل: اختيار ويندوز 64 بت (الأغلب) أو 32 بت (الأجهزة القديمة)
   const SETUP = /\/(Wazn|Mizan|Miyar)-Setup\.exe$/i;
-  const URL32 = 'https://github.com/Akyedgam3/mizan-updates/releases/latest/download/Wazn-Setup-32bit.exe';
+  const URL32 = 'https://waznsy.com/dl/Wazn-Setup-32bit.exe';
   let dl = null;
   const pick = (url64) => {
     if (!dl) {
