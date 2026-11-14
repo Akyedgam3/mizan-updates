@@ -1,0 +1,31 @@
+# فحص روابط التحميل من برّا (بعد كل نشر للموقع، أو يدوياً): https و http، الحجم والشهادة.
+name: Check downloads
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/check-downloads.yml']
+  workflow_run:
+    workflows: ['Deploy site']
+    types: [completed]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check
+        run: |
+          sleep 30
+          for scheme in https http; do
+            for f in Wazn-Setup.exe Wazn-Setup-32bit.exe Wazn.apk; do
+              u="$scheme://waznsy.com/dl/$f"
+              r=$(curl -sS -o /dev/null -L -r 0-1023 -w '%{http_code} %{content_type} redirects=%{num_redirects} final=%{url_effective}' "$u" 2>&1) || true
+              echo "$u -> $r"
+            done
+            echo "$scheme://waznsy.com/update.html -> $(curl -sS -o /dev/null -L -w '%{http_code} final=%{url_effective}' $scheme://waznsy.com/update.html 2>&1)"
+          done
+          echo "--- full size (https 64bit)"
+          curl -sSI -L https://waznsy.com/dl/Wazn-Setup.exe | grep -i -E '^(HTTP|content-length|content-type|location)' || true
+          echo "--- certificate"
+          echo | openssl s_client -connect waznsy.com:443 -servername waznsy.com 2>/dev/null | openssl x509 -noout -subject -issuer -dates -ext subjectAltName || echo "no cert"
+          echo "--- www"
+          curl -sS -o /dev/null -L -w '%{http_code} final=%{url_effective}\n' https://www.waznsy.com/ 2>&1 || true
