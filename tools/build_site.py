@@ -56,7 +56,7 @@ def page(file, title, desc, body, active='', base='', head=''):
 <meta property="og:image" content="{SITE}assets/img/og.jpg" />
 <link rel="canonical" href="{SITE}{file if file != 'index.html' else ''}" />{'<meta name="robots" content="noindex" />' if file == '404.html' else ''}{head}
 <link rel="preload" href="assets/fonts/cairo-arabic-900-normal.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="stylesheet" href="assets/css/site.css?v=14" />
+<link rel="stylesheet" href="assets/css/site.css?v=15" />
 </head>
 <body>
 <a class="skip" href="#main">تخطَّ إلى المحتوى</a>
