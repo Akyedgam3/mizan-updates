@@ -2,72 +2,59 @@ title: Wazn وزن — برنامج محاسبة وإدارة محلات عرب�
 description: وزن برنامج محاسبة عربي لويندوز لأكتر من 25 مجال عمل: ميني ماركت، مطاعم، ورش خياطة، موبايلات وكمبيوتر، صيدليات وغيرها. بيشتغل بدون إنترنت، بالليرة والدولار.
 active: index.html
 ---
-<div class="dark">
-  <div class="blob a"></div><div class="blob b"></div><div class="grid-bg"></div>
+<div class="paper">
   <section class="hero">
     <div class="wrap">
-      <div class="reveal">
-        <span class="kicker"><i></i>النسخة {{VERSION}} متوفرة الآن</span>
-        <h1>حساباتك صارت <span class="accent">بوزنها</span></h1>
-        <p class="lead">برنامج محاسبة وإدارة محلات عربي لويندوز، بيشتغل بدون إنترنت، ومفصّل لأكتر من 25 مجال عمل: من الميني ماركت والمطاعم، لورش الخياطة ومحلات الموبايلات والكمبيوتر.</p>
+      <div>
+        <h1>سكّر الدفتر.</h1>
+        <p class="lead">وزن برنامج محاسبة وإدارة محلات بالعربي: البيع والمخزون والديون والأرباح، بالليرة والدولار، وبيشتغل بدون إنترنت على الكمبيوتر والجوال.</p>
         <div class="cta">
           <a class="btn primary" href="{{DOWNLOAD}}">{{icon:download}}حمّل وزن لويندوز</a>
           <a class="btn ghost" href="{{APK}}">{{icon:smartphone}}تطبيق أندرويد</a>
-          <small>ويندوز 10 و 11 (64-bit) · أندرويد 7 وأحدث · بعد التنصيب ابعتلنا بصمة الجهاز لنفعّلك</small>
+          <small>النسخة {{VERSION}}، لويندوز 10 و11 وأندرويد 7 وأحدث. بعد التنصيب ابعتلنا بصمة الجهاز لنفعّلك.</small>
         </div>
-        <div class="trust">
-          <span>{{icon:wifi-off}}بدون إنترنت</span>
-          <span>{{icon:shield-check}}بياناتك مشفّرة عندك</span>
-          <span>{{icon:hand-coins}}ليرة ودولار</span>
-          <span>{{icon:network}}أكتر من جهاز</span>
-        </div>
+        <p class="trial">بدك تجرّب قبل ما تدفع؟ <a href="https://wa.me/{{WA1}}?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A8%D8%AF%D9%8A%20%D8%AC%D8%B1%D9%91%D8%A8%20%D9%88%D8%B2%D9%86%20%D9%86%D8%B3%D8%AE%D8%A9%20%D8%AA%D8%AC%D8%B1%D9%8A%D8%A8%D9%8A%D8%A9%20%D8%A8%D8%A8%D9%84%D8%A7%D8%B4." rel="noopener">راسلنا ومنفعّلك نسخة تجريبية ببلاش</a>، مع بيانات تجريبية لمجالك.</p>
       </div>
-      <div class="device reveal d2">
-        <div class="screen">
-          <div class="bar"><i></i><i></i><i></i><b>لوحة التحكم</b></div>
-          <div class="shots">
-            <img class="on" src="assets/img/dashboard.webp" data-cap="لوحة التحكم" alt="لوحة التحكم في وزن" width="1200" height="750" fetchpriority="high" />
-            <img src="assets/img/pos.webp" data-cap="نقطة البيع" alt="نقطة البيع" width="1200" height="750" loading="lazy" />
-            <img src="assets/img/tables.webp" data-cap="المطاعم: الطاولات" alt="شاشة الطاولات" width="1200" height="750" loading="lazy" />
-            <img src="assets/img/workshop.webp" data-cap="ورشة الخياطة" alt="ورشة الخياطة" width="1200" height="750" loading="lazy" />
-            <img src="assets/img/installments.webp" data-cap="التقسيط" alt="التقسيط" width="1200" height="750" loading="lazy" />
-            <img src="assets/img/invoice.webp" data-cap="الفاتورة" alt="الفاتورة" width="1200" height="750" loading="lazy" />
-          </div>
+      <div class="desk" aria-hidden="true">
+        <div class="ledger">
+          <ol>
+            <li><span>أبو علي، رز وسكر</span><s>٣٥٬٠٠٠</s></li>
+            <li><span>مطعم الضيعة، زيت</span><s>١٢٠٬٠٠٠</s></li>
+            <li><span>دفع ٢٠ ألف</span><s>١٠٠٬٠٠٠</s></li>
+            <li><span>ربح الشهر</span><span class="q">؟؟</span></li>
+            <li><span>كم الباقي بالمستودع</span><span class="q">؟</span></li>
+          </ol>
         </div>
-        <div class="float f1"><b>{{icon:wifi-off}}</b>شغّال بدون نت</div>
-        <div class="float f2"><b>{{icon:printer}}</b>طباعة حرارية وA4</div>
-        <div class="float f3"><b>{{icon:file-spreadsheet}}</b>تصدير Excel</div>
+        <figure class="hero-shot" style="margin:0">
+          <img src="assets/img/dashboard.webp" alt="الرئيسية في برنامج وزن: مبيعات اليوم والربح والديون" width="1200" height="750" fetchpriority="high" />
+          <figcaption>الرئيسية بوزن: مبيعات اليوم، الربح، الديون، والنواقص</figcaption>
+        </figure>
       </div>
     </div>
   </section>
-  <div class="marquee" aria-hidden="true">
-    <div class="track">
-      <span>{{icon:shopping-cart}}سوبرماركت وبقالية</span><span>{{icon:utensils}}مطاعم وكافيهات</span><span>{{icon:scissors}}خياطة وورش جملة</span><span>{{icon:laptop}}موبايلات وكمبيوتر</span><span>{{icon:pill}}صيدليات</span><span>{{icon:shirt}}ألبسة وأحذية</span><span>{{icon:car}}قطع غيار سيارات</span><span>{{icon:brick-wall}}مواد بناء</span><span>{{icon:beef}}لحوم وخضار</span><span>{{icon:croissant}}أفران وحلويات</span><span>{{icon:ice-cream}}حلويات وبوظة</span><span>{{icon:truck}}توزيع وجملة</span><span>{{icon:stethoscope}}عيادات وصالونات</span><span>{{icon:store}}تجارة عامة</span>
-      <span>{{icon:shopping-cart}}سوبرماركت وبقالية</span><span>{{icon:utensils}}مطاعم وكافيهات</span><span>{{icon:scissors}}خياطة وورش جملة</span><span>{{icon:laptop}}موبايلات وكمبيوتر</span><span>{{icon:pill}}صيدليات</span><span>{{icon:shirt}}ألبسة وأحذية</span><span>{{icon:car}}قطع غيار سيارات</span><span>{{icon:brick-wall}}مواد بناء</span><span>{{icon:beef}}لحوم وخضار</span><span>{{icon:croissant}}أفران وحلويات</span><span>{{icon:ice-cream}}حلويات وبوظة</span><span>{{icon:truck}}توزيع وجملة</span><span>{{icon:stethoscope}}عيادات وصالونات</span><span>{{icon:store}}تجارة عامة</span>
+  <div class="fields">
+    <div class="wrap">
+      <b>بيخدم أكتر من 25 مجال:</b> <a href="supermarket.html">سوبرماركت</a>، <a href="restaurant.html">مطاعم</a>، <a href="pharmacy.html">صيدليات</a>، <a href="mobile-shop.html">موبايلات وكمبيوتر</a>، <a href="tailoring.html">خياطة</a>، <a href="clothing.html">ألبسة</a>، <a href="auto-parts.html">قطع غيار</a>، <a href="building-materials.html">مواد بناء</a>، <a href="wholesale.html">جملة وتوزيع</a>… <a href="sectors.html">وكل المجالات</a>.
     </div>
-  </div>
-  <div style="height:70px"></div>
-</div>
-
-<div class="wrap">
-  <div class="stats">
-    <div class="stat reveal"><b data-count="25" data-suffix="+">25+</b><span>مجال عمل</span></div>
-    <div class="stat reveal d1"><b data-count="100" data-suffix="%">100%</b><span>عربي ومن اليمين لليسار</span></div>
-    <div class="stat reveal d2"><b data-count="2">2</b><span>جهاز بكل رخصة</span></div>
-    <div class="stat reveal d3"><b data-count="5" data-suffix=" د">5 د</b><span>وبتبلّش شغل</span></div>
   </div>
 </div>
 
 
-<section class="stage3d" aria-label="جولة ثلاثية الأبعاد بشاشات وزن">
-  <div class="stage-sticky">
-    <div class="stage-head">
-      <div class="tag">انزل لتلفّ</div>
-      <h2>كل شاشات محلك، بمكان واحد</h2>
-      <p class="stage-cap" aria-live="polite">لوحة التحكم</p>
+<section id="compare">
+  <div class="wrap">
+    <div class="head">
+      <h2>الفرق بين الدفتر ووزن</h2>
+      <p>نفس الأسئلة اللي بتسألها كل يوم بالمحل. بالدفتر بدها ساعة، وبوزن بتطلع بكبسة.</p>
     </div>
-    <div class="ring-wrap"><div class="ring" style="--n:8"><figure class="face" style="--i:0"><img src="assets/img/dashboard.webp" alt="لوحة التحكم في برنامج وزن" width="1200" height="750" loading="lazy" /><figcaption>لوحة التحكم</figcaption></figure><figure class="face" style="--i:1"><img src="assets/img/pos.webp" alt="نقطة البيع في برنامج وزن" width="1200" height="750" loading="lazy" /><figcaption>نقطة البيع</figcaption></figure><figure class="face" style="--i:2"><img src="assets/img/tables.webp" alt="طاولات المطعم في برنامج وزن" width="1200" height="750" loading="lazy" /><figcaption>طاولات المطعم</figcaption></figure><figure class="face" style="--i:3"><img src="assets/img/invoice.webp" alt="الفاتورة في برنامج وزن" width="1200" height="750" loading="lazy" /><figcaption>الفاتورة</figcaption></figure><figure class="face" style="--i:4"><img src="assets/img/workshop.webp" alt="ورشة الخياطة في برنامج وزن" width="1200" height="750" loading="lazy" /><figcaption>ورشة الخياطة</figcaption></figure><figure class="face" style="--i:5"><img src="assets/img/reports.webp" alt="التقارير في برنامج وزن" width="1200" height="750" loading="lazy" /><figcaption>التقارير</figcaption></figure><figure class="face" style="--i:6"><img src="assets/img/installments.webp" alt="التقسيط في برنامج وزن" width="1200" height="750" loading="lazy" /><figcaption>التقسيط</figcaption></figure><figure class="face" style="--i:7"><img src="assets/img/kitchen.webp" alt="شاشة المطبخ في برنامج وزن" width="1200" height="750" loading="lazy" /><figcaption>شاشة المطبخ</figcaption></figure></div></div>
-    <div class="stage-bar"><i></i></div>
+    <div class="compare" role="table" aria-label="مقارنة بين الدفتر ووزن">
+      <div class="cmp-row cmp-head" role="row"><span role="columnheader">السؤال</span><span role="columnheader">بالدفتر</span><span role="columnheader">بوزن</span></div>
+      <div class="cmp-row" role="row"><b role="cell">مين عليه دين وقديش؟</b><span role="cell" class="old">بتقلّب الصفحات وبتجمع عالآلة</span><span role="cell" class="new">{{icon:check}}كشف حساب لكل زبون، وتذكير عالواتساب</span></div>
+      <div class="cmp-row" role="row"><b role="cell">قديش ربحت هالشهر؟</b><span role="cell" class="old">تقدير، وبتعرف بآخر السنة</span><span role="cell" class="new">{{icon:check}}ربح كل فاتورة وكل يوم، وقائمة الدخل</span></div>
+      <div class="cmp-row" role="row"><b role="cell">شو خلص من البضاعة؟</b><span role="cell" class="old">بتعرف لما يطلبها زبون</span><span role="cell" class="new">{{icon:check}}تنبيه بالنواقص، وكمية كل مادة بكل مستودع</span></div>
+      <div class="cmp-row" role="row"><b role="cell">الدولار طلع، شو صار بالأسعار؟</b><span role="cell" class="old">بتمحي وبتكتب من جديد</span><span role="cell" class="new">{{icon:check}}سعر الصرف بإيدك، والأسعار بالليرة والدولار</span></div>
+      <div class="cmp-row" role="row"><b role="cell">شو صار بالصندوق وإنت برّا؟</b><span role="cell" class="old">بتسأل الموظف</span><span role="cell" class="new">{{icon:check}}كل عملية باسم صاحبها، وبتشوف محلك من جوالك</span></div>
+      <div class="cmp-row" role="row"><b role="cell">انكب الشاي عالدفتر</b><span role="cell" class="old">راحت الحسابات</span><span role="cell" class="new">{{icon:check}}نسخة احتياطية، وبياناتك مشفّرة</span></div>
+    </div>
   </div>
 </section>
 
@@ -263,17 +250,28 @@ active: index.html
   </div>
 </section>
 
-<section id="pricing" style="background:#fff">
-  <div class="wrap">
-    <div class="head reveal">
-      <div class="tag">الاشتراك</div>
+<section id="pricing">
+  <div class="wrap pricing">
+    <div class="head">
       <h2>اشتراك شهري أو سنوي، أو شراء دائم</h2>
-      <p>نفس البرنامج الكامل بكل الاشتراكات، الفرق بس بالمدة. للأسعار والعروض راسلنا واتساب ومنرد عليك بسرعة.</p>
+      <p>نفس البرنامج الكامل بكل الاشتراكات، الفرق بس بالمدة. راسلنا عالواتساب ومنقلك السعر والعروض.</p>
+      <div class="cta" style="margin-top:24px">
+        <a class="btn wa" href="https://wa.me/{{WA1}}?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A8%D8%AF%D9%8A%20%D8%A7%D8%B3%D8%A3%D9%84%20%D8%B9%D9%86%20%D8%B3%D8%B9%D8%B1%20%D9%88%D8%B2%D9%86" rel="noopener">{{icon:message-circle}}اسأل عن السعر</a>
+        <a class="btn ghost" href="https://wa.me/{{WA2}}" rel="noopener">{{icon:message-circle}}<span class="ltr">{{PH2}}</span></a>
+      </div>
     </div>
-    <ul class="checks center-checks reveal"><li>{{icon:check}}كل المجالات والمزايا</li><li>{{icon:check}}كل رخصة على جهازين لنفس الشركة</li><li>{{icon:check}}تحديثات ودعم خلال الاشتراك</li></ul>
-    <div class="cta center reveal">
-      <a class="btn green" href="https://wa.me/{{WA1}}?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A8%D8%AF%D9%8A%20%D8%A7%D8%B3%D8%A3%D9%84%20%D8%B9%D9%86%20%D8%B3%D8%B9%D8%B1%20%D9%88%D8%B2%D9%86" rel="noopener">{{icon:message-circle}}اسأل عن السعر</a>
-      <a class="btn" href="https://wa.me/{{WA2}}" rel="noopener">{{icon:message-circle}}<span class="ltr">{{PH2}}</span></a>
+    <div class="receipt" aria-label="شو بيشمل الاشتراك">
+      <h3>وزن</h3>
+      <p class="sub">شو بيشمل كل اشتراك</p>
+      <ul>
+        <li><span>كل المجالات والمزايا</span><span>✓</span></li>
+        <li><span>جهازين لنفس الشركة</span><span>✓</span></li>
+        <li><span>تطبيق أندرويد</span><span>✓</span></li>
+        <li><span>التحديثات</span><span>✓</span></li>
+        <li><span>الدعم عالواتساب</span><span>✓</span></li>
+      </ul>
+      <div class="total"><span>المدة</span><span>شهر، 3، 6، سنة، أو دائم</span></div>
+      <p class="thanks">شكراً لزيارتكم</p>
     </div>
   </div>
 </section>
@@ -301,7 +299,7 @@ active: index.html
       <div class="step reveal d1"><h3>ابعتلنا البصمة</h3><p>أول ما يفتح البرنامج بيطلعلك كود "بصمة الجهاز". ابعتلنا ياه عالواتساب أو للوكيل تبعك.</p></div>
       <div class="step reveal d2"><h3>فعّل وبلّش</h3><p>بيوصلك مفتاح التفعيل، الصقه، واختار نوع شغلك. وإذا حابب تجرب، فعّل "بيانات تجريبية".</p></div>
     </div>
-    <div class="cta reveal" style="justify-content:center;margin-top:34px">
+    <div class="cta" style="margin-top:34px">
       <a class="btn primary" href="{{DOWNLOAD}}">{{icon:download}}حمّل وزن الآن</a>
       <a class="btn wa" href="https://wa.me/{{WA1}}" rel="noopener">{{icon:message-circle}}اطلب التفعيل واتساب</a>
     </div>
@@ -312,10 +310,10 @@ active: index.html
   <div class="band dark reveal">
     <div class="blob b" style="opacity:.3"></div>
     <div>
-      <h2>وكيل وزن المعتمد بمنطقتك</h2>
-      <p>الوكالة بطلب وموافقة، والأماكن محدودة بكل منطقة. برنامج بيبيع حالو، ولوحة وكيل وتفعيل فوري لزباينك.</p>
+      <h2>بدك تكون وكيل وزن بمنطقتك؟</h2>
+      <p>باب الوكالات مقفل حالياً لرأس السنة. تواصل معنا لتعرف الأسعار والشروط وتحجز دورك.</p>
     </div>
-    <div class="cta"><a class="btn primary" href="agents.html">{{icon:handshake}}قدّم طلب وكالة</a></div>
+    <div class="cta"><a class="btn primary" href="agents.html">{{icon:handshake}}تفاصيل الوكالة</a></div>
   </div>
 </div>
 

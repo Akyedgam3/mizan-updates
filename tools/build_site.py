@@ -23,8 +23,20 @@ def icon(name, cls=''):
 NAV = [('index.html', 'الرئيسية'), ('sectors.html', 'المجالات'), ('index.html#features', 'المزايا'), ('index.html#pricing', 'الاشتراك'), ('index.html#videos', 'فيديوهات'), ('reviews.html', 'التقييمات'), ('agents.html', 'كن وكيلاً'), ('index.html#faq', 'أسئلة')]
 
 
+def clean(body):
+    """تصميم 2026-11: بدون فقاعات ملوّنة وشبكة خلفية وعناوين صغيرة فوق العناوين. رؤوس الصفحات صارت ورق أبيض."""
+    import re
+    body = re.sub(r'<div class="dark"([^>]*)>\s*(?:<div class="(?:blob[^"]*|grid-bg)"[^>]*></div>\s*)+', r'<div class="paper"\1>\n', body)
+    body = re.sub(r'<div class="(?:blob[^"]*|grid-bg)"[^>]*></div>\s*', '', body)
+    body = re.sub(r'<span class="kicker"><i></i>[^<]*</span>\s*', '', body)
+    body = re.sub(r'<(div|span) class="tag">[^<]*</\1>\s*', '', body)
+    body = re.sub(r'\s*<div style="height:\d+px"></div>', '', body)
+    return body
+
+
 def page(file, title, desc, body, active='', base='', head=''):
-    links = ''.join(f'<a href="{h}"{" class=on" if h == active else ""}>{t}</a>' for h, t in NAV)
+    body = clean(body)
+    links =''.join(f'<a href="{h}"{" class=on" if h == active else ""}>{t}</a>' for h, t in NAV)
     return f'''<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
@@ -44,7 +56,7 @@ def page(file, title, desc, body, active='', base='', head=''):
 <meta property="og:image" content="{SITE}assets/img/og.jpg" />
 <link rel="canonical" href="{SITE}{file if file != 'index.html' else ''}" />{'<meta name="robots" content="noindex" />' if file == '404.html' else ''}{head}
 <link rel="preload" href="assets/fonts/cairo-arabic-900-normal.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="stylesheet" href="assets/css/site.css?v=13" />
+<link rel="stylesheet" href="assets/css/site.css?v=14" />
 </head>
 <body>
 <a class="skip" href="#main">تخطَّ إلى المحتوى</a>
@@ -93,7 +105,7 @@ def page(file, title, desc, body, active='', base='', head=''):
   </div>
 </footer>
 <a class="wa-float" href="https://wa.me/{WA1}" rel="noopener" aria-label="راسلنا واتساب">{icon('message-circle')}</a>
-<script src="assets/js/site.js?v=5" defer></script>
+<script src="assets/js/site.js?v=6" defer></script>
 </body>
 </html>
 '''
