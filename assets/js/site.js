@@ -45,9 +45,12 @@
       dl.innerHTML =
         '<form method="dialog">' +
         '<button class="dl-x" aria-label="إغلاق">×</button>' +
-        '<h3>اختار نسخة ويندوز</h3>' +
+        '<h3>اختار نسختك</h3>' +
         '<a class="dl-opt main" data-arch="64"><b>ويندوز 64 بت</b><small>لأغلب الأجهزة. إذا مو متأكد اختار هي</small></a>' +
         '<a class="dl-opt" data-arch="32" href="' + URL32 + '"><b>ويندوز 32 بت</b><small>للأجهزة القديمة (ويندوز 10 بنظام 32 بت)</small></a>' +
+        '<p class="dl-sep">أو على الجوال</p>' +
+        '<a class="dl-opt" href="https://waznsy.com/dl/Wazn.apk"><b>أندرويد</b><small>تطبيق وزن الكامل (أندرويد 7 وأحدث)</small></a>' +
+        '<a class="dl-opt" href="https://waznsy.com/app/"><b>آيفون</b><small>افتحه بسفاري وضيفه عالشاشة الرئيسية</small></a>' +
         '<p class="dl-how">كيف بعرف؟ من <b>الإعدادات ← النظام ← حول</b>، شوف «نوع النظام». إذا نزّلت 64 بت وطلعتلك رسالة إنو ما بيشتغل على هالجهاز، نزّل 32 بت.</p>' +
         '</form>';
       document.body.append(dl);

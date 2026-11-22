@@ -310,6 +310,7 @@ button.link.danger { color: #c0392b; }
 .dl-opt.main { border-color: var(--g); background: var(--g-lt); }
 .dl-opt b { font-size: 18px; }
 .dl-opt small { color: var(--muted); font-size: 14px; }
+.dl-sep { margin: 4px 0 -4px; font-size: 14px; font-weight: 700; color: var(--muted); }
 .dl-how { margin: 4px 0 0; font-size: 14px; color: var(--muted); line-height: 1.7; }
 
 /* ───────── شاشات أصغر ───────── */
