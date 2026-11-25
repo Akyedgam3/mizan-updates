@@ -16,12 +16,9 @@ concurrency:
   group: pages
   cancel-in-progress: true
 jobs:
-  # مصدر GitHub Pages = GitHub Actions: منرفع الموقع مباشرة
-  deploy:
+  # مصدر GitHub Pages = GitHub Actions. شغلتين (رفع ثم نشر): لما كانوا بنفس الشغلة النشر ما كان يلاقي الملف المرفوع
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       # نسخة من ملفات آخر Release على الموقع نفسه (waznsy.com/dl/...): بسوريا روابط GitHub Releases بدها VPN
@@ -36,5 +33,12 @@ jobs:
       - uses: actions/upload-pages-artifact@v4
         with:
           path: .
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
       - id: deploy
         uses: actions/deploy-pages@v4
