@@ -54,6 +54,14 @@ def page(file, title, desc, body, active='', base='', head=''):
 <meta property="og:description" content="{desc}" />
 <meta property="og:url" content="{SITE}{file if file != 'index.html' else ''}" />
 <meta property="og:image" content="{SITE}assets/img/og.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:site_name" content="وزن Wazn" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{title}" />
+<meta name="twitter:description" content="{desc}" />
+<meta name="twitter:image" content="{SITE}assets/img/og.jpg" />
+{'' if file in ('404.html', 'get.html') else '<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />'}
 <link rel="canonical" href="{SITE}{file if file != 'index.html' else ''}" />{'<meta name="robots" content="noindex" />' if file == '404.html' else ''}{head}
 <link rel="preload" href="assets/fonts/cairo-arabic-900-normal.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="stylesheet" href="assets/css/site.css?v=17" />
@@ -123,7 +131,7 @@ def render(name):
     fill = lambda t: t.replace('{{VERSION}}', VERSION)
     out = page(name, fill(m['title']), fill(m['description']), body, m.get('active', ''), m.get('base', ''))
     if name == 'index.html':
-        out = out.replace('</head>', LD_JSON + '\n</head>', 1)
+        out = out.replace('</head>', LD_JSON + faq_ld(body) + '\n</head>', 1)
     open(os.path.join(ROOT, name), 'w', encoding='utf8').write(out)
     print('built', name)
 
@@ -135,14 +143,29 @@ LD_JSON = '<script type="application/ld+json">' + _json.dumps([
         '@context': 'https://schema.org', '@type': 'SoftwareApplication', 'name': 'وزن', 'alternateName': ['Wazn', 'برنامج وزن للمحاسبة'],
         'url': SITE, 'image': SITE + 'assets/img/logo-256.png', 'inLanguage': 'ar',
         'applicationCategory': 'BusinessApplication', 'applicationSubCategory': 'برنامج محاسبة وإدارة محلات',
-        'operatingSystem': 'Windows, Android', 'softwareVersion': VERSION, 'downloadUrl': DOWNLOAD,
+        'operatingSystem': 'Windows, Android, iOS', 'softwareVersion': VERSION, 'downloadUrl': DOWNLOAD,
         'description': 'برنامج محاسبة وإدارة محلات عربي يشتغل بدون إنترنت: فواتير، مخزون، ديون، نقطة بيع، مطاعم، ورش، صيدليات، بالليرة والدولار.',
     },
+    # اسم الموقع بنتايج غوغل («وزن» بدل waznsy.com)
+    {'@context': 'https://schema.org', '@type': 'WebSite', 'name': 'وزن', 'alternateName': ['Wazn', 'waznsy'], 'url': SITE, 'inLanguage': 'ar'},
     {
         '@context': 'https://schema.org', '@type': 'Organization', 'name': 'وزن', 'url': SITE, 'logo': SITE + 'assets/img/logo-256.png', 'email': EMAIL,
         'contactPoint': [{'@type': 'ContactPoint', 'telephone': PH1.replace(' ', ''), 'contactType': 'customer service', 'areaServed': 'SY', 'availableLanguage': 'ar'}],
     },
 ], ensure_ascii=False) + '</script>'
+
+
+
+def faq_ld(body):
+    """أسئلة «عندك سؤال؟» بالرئيسية كـ FAQPage: غوغل ممكن يعرضها تحت النتيجة"""
+    import re
+    strip = lambda t: re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', '', t)).strip()
+    qa = re.findall(r'<details[^>]*><summary>(.*?)</summary><p>(.*?)</p></details>', body, re.S)
+    if not qa:
+        return ''
+    return '<script type="application/ld+json">' + _json.dumps({'@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': [
+        {'@type': 'Question', 'name': strip(q), 'acceptedAnswer': {'@type': 'Answer', 'text': strip(a)}} for q, a in qa]}, ensure_ascii=False) + '</script>'
+
 
 from sectors import SECTORS
 
@@ -244,7 +267,7 @@ def seo_files():
     today = datetime.date.today().isoformat()
     urls = ''.join(f'  <url><loc>{SITE}{p}</loc><lastmod>{today}</lastmod><changefreq>{c}</changefreq><priority>{pr}</priority></url>\n' for p, pr, c in SITEMAP_PAGES)
     open(os.path.join(ROOT, 'sitemap.xml'), 'w', encoding='utf8').write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>\n')
-    open(os.path.join(ROOT, 'robots.txt'), 'w', encoding='utf8').write(f'User-agent: *\nAllow: /\nDisallow: /release/\nDisallow: /get.html\n\nSitemap: {SITE}sitemap.xml\n')
+    open(os.path.join(ROOT, 'robots.txt'), 'w', encoding='utf8').write(f'User-agent: *\nAllow: /\nDisallow: /release/\nDisallow: /get.html\nDisallow: /dl/\nDisallow: /app/\n\nSitemap: {SITE}sitemap.xml\n')
     print('built sitemap.xml, robots.txt')
 
 

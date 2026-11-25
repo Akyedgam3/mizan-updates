@@ -2,5 +2,7 @@ User-agent: *
 Allow: /
 Disallow: /release/
 Disallow: /get.html
+Disallow: /dl/
+Disallow: /app/
 
 Sitemap: https://waznsy.com/sitemap.xml
