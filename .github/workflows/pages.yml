@@ -32,7 +32,7 @@ jobs:
           gh release download --repo "$GITHUB_REPOSITORY" --dir dl --clobber \
             --pattern 'Wazn-Setup.exe' --pattern 'Wazn-Setup-32bit.exe' --pattern 'Wazn.apk' || echo "ما قدرنا نجيب الملفات"
           ls -la dl
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: .
       - id: deploy
